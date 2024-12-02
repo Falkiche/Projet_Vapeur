@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model VideoGame {
+model Games {
   id          Int    @id @default(autoincrement())
   name        String
   description String
@@ -22,12 +22,12 @@ model VideoGame {
   editor      String
 }
 
-model GameGenre {
+model Genres {
   id    Int    @id @default(autoincrement())
   genre String
 }
 
-model Editor {
+model Editors {
   id         Int    @id @default(autoincrement())
   editorName String
 }
