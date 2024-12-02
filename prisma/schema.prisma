@@ -29,5 +29,5 @@ model GameGenre {
 
 model Editor {
   id         Int    @id @default(autoincrement())
-  enterprise String
+  editorName String
 }

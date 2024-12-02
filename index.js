@@ -4,10 +4,10 @@ const getUsers = () => {
             const success = Math.random() > 0.5;
             if (success) {
                 resolve([
-                    { id: 1, nom: "Arthur" },
-                    { id: 2, nom: "Perceval" },
-                    { id: 3, nom: "Karadoc" },
-                    { id: 4, nom: "Guenièvre" },
+                    { id: 1, nom: "Test1" },
+                    { id: 2, nom: "Test2" },
+                    { id: 3, nom: "Test4" },
+                    { id: 4, nom: "Test" },
                     { id: 5, nom: "Lancelot" },
                     { id: 6, nom: "Merlin" },
                 ]);
