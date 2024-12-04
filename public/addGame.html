@@ -4,15 +4,13 @@
     <head>
         <meta charset="UTF-8" />
         <title>Page Dynamique</title>
-        <script src="/addGame.js" defer></script>
     </head>
 
-
     <body>
-        <form id="contactForm">
+        <form id="contactForm" action="/addGame" method="POST">
             Ajouter un jeu : 
-            <label for="gameName">Nom du jeu :</label>
-            <input type="text" id="gameName" name="gameName" />
+            <label for="name">Nom du jeu :</label>
+            <input type="text" id="name" name="name" />
             <button type="submit">Ajouter</button>
         </form>
     </body>

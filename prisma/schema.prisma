@@ -14,12 +14,8 @@ datasource db {
 }
 
 model Games {
-  id          Int    @id @default(autoincrement())
-  name        String
-  description String
-  releaseDate String
-  genre       String
-  editor      String
+  id   Int    @id @default(autoincrement())
+  name String
 }
 
 model Genres {
