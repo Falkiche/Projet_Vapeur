@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    <h1>Tous les jeux ayant pour genre <strong>{{genre.genre}}</strong></h1>
     {{#each games}}
         <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a></li>
     {{/each}}

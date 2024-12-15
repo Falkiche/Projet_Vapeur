@@ -152,17 +152,19 @@
     });
 
     app.get("/genreDetails/:id-:genre", async (req, res) => {
-        const { genre } = req.params;
+        const { id, genreName } = req.params;
         try {
             const games = await prisma.games.findMany({
-                where: { genre: genre },
+                where: { genre: genreName },
             });
-
+            const genre = await prisma.genres.findUnique({
+                where: { id: parseInt(id) }
+            });
         if (!games || games.length === 0) {
             return res.status(404).send("Aucun jeu trouvé pour ce genre");
         }
     
-            res.render("genreDetails", { games });
+            res.render("genreDetails", { games, genre });
         } catch (error) {
             console.error("Erreur de récupération des détails du genre:", error);
             res.status(500).send("Erreur de serveur");
