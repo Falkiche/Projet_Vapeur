@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Page Dynamique</title>
+    </head>
+
+    <body>
+        <form id="addGameForm" action="/addGame" method="POST">
+            Ajouter un jeu : 
+            <label for="name">Nom du jeu :</label>
+            <input type="text" id="name" name="name" required/>
+
+            <label for="description">Description :</label>
+            <input type="text" id="description" name="description"/>
+
+            <label for="releaseDate">Date de sortie :</label>
+            <input type="date" id="releaseDate" name="releaseDate" required/>
+
+            <label for="genre">Genre :</label>
+            <select id="genre" name="genre" required>
+                {{#each genres}} 
+                    <option value="{{this.genre}}">{{this.genre}}</option>
+                {{/each}}
+            </select>
+
+            <label for="editor">Éditeur :</label>
+            <select id="editor" name="editor" required>
+                {{#each editors}} 
+                    <option value="{{this.editorName}}">{{this.editorName}}</option>
+                {{/each}}
+            </select>
+
+            <button type="submit">Ajouter</button>
+
+            <a href="/">Retour à l'accueil</a>
+        </form>
+    </body>
+</html>

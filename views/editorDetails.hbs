@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Détails de l'éditeur</title>
+</head>
+
+<body>
+    <h1>A propos de <strong>{{editor.editorName}}</strong></h1>
+    {{#each games}}
+        <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a></li>
+    {{/each}}
+    <a href="/editorList">Retour à la liste des éditeurs</a>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Liste des Genres</title>
+</head>
+
+<body>
+    <h1>Liste des Genres</h1>
+    <ul>
+        {{#each genres}}
+        <li><a href="/genreDetails/{{this.id}}-{{this.genre}}">{{this.genre}}</a></li>
+        {{/each}}
+    </ul>
+    <a href="/">Retour à l'accueil</a>
+</body>
+
+</html>

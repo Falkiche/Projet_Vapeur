@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Liste des Jeux</title>
+</head>
+
+<body>
+    <h1>Liste des Jeux</h1>
+    <ul>
+        {{#each games}}
+        <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a>
+            <form action="/deleteGame/{{this.id}}" method="POST" style="display:inline;">
+                <button type="submit">Supprimer</button>
+            </form>
+            
+            <form action="/modifyGame/{{this.id}}-{{this.name}}" method="GET" style="display:inline;">
+                <button type="submit">Modifier</button>
+            </form>
+
+             <form action="/toggleHomepage/{{this.id}}" method="POST" style="display:inline;">
+                <button type="submit">
+                    {{#if this.appearHomepage}}Retirer de la page d'accueil{{else}}Mettre en avant{{/if}}
+                </button>
+            </form>
+        </li>
+        {{/each}}
+    </ul>
+    <a href="/">Retour à l'accueil</a>
+</body>
+
+</html>

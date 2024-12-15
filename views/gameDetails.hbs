@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Détails du jeu</title>
+</head>
+
+<body>
+    <h1> {{game.name}}</h1>
+
+        <strong>{{game.description}}</strong> 
+        {{game.releaseDate}}
+        <a href="/genreDetails/{{game.id}}-{{game.genre}}">{{game.genre}}</a>
+        <a href="/editorDetails/{{game.id}}-{{game.editor}}">{{game.editor}}</a>
+
+
+    <a href="/gameList">Retour à la liste des jeux</a>
+</body>
+
+</html>

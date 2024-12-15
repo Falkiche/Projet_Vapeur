@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Modifier le Jeu</title>
+</head>
+<body>
+    <h1>Modifier le Jeu</h1>
+    <form action="/modifyGame/{{game.id}}" method="POST">
+        <label for="name">Nom du jeu :</label>
+        <input type="text" id="name" name="name" value="{{game.name}}" required/>
+
+        <label for="description">Description :</label>
+        <input type="text" id="description" name="description" value="{{game.description}}"/>
+
+        <label for="releaseDate">Date de sortie :</label>
+        <input type="date" id="releaseDate" name="releaseDate" value="{{game.releaseDate}}"required/>
+
+        <label for="genre">Genre :</label>
+        <select id="genre" name="genre" required>
+            {{#each genres}} 
+                <option value="{{this.genre}}">{{this.genre}}</option>
+            {{/each}}
+        </select>
+
+        <label for="editor">Éditeur :</label>
+        <select id="editor" name="editor" required>
+            {{#each editors}} 
+                <option value="{{this.editorName}}">{{this.editorName}}</option>
+            {{/each}}
+        </select>
+
+        
+        <button type="submit">Mettre à jour</button>
+    </form>
+    <a href="/gameList">Annuler</a>
+</body>
+</html>

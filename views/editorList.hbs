@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Liste des Editeurs</title>
+</head>
+
+<body>
+    <h1>Liste des Editeurs</h1>
+    <ul>
+        {{#each editors}}
+        <li><a href="/editorDetails/{{this.id}}-{{this.editorName}}">{{this.editorName}}</a>
+            <form action="/deleteEditor/{{this.id}}-{{this.editorName}}" method="POST" style="display:inline;">
+                <button type="submit">Supprimer</button>
+            </form>   
+            <form action="/modifyEditor/{{this.id}}-{{this.editorName}}" method="GET" style="display:inline;">
+                <button type="submit">Modifier</button>
+            </form>
+        {{/each}}
+    </ul>
+    <a href="/">Retour à l'accueil</a>
+</body>
+
+</html>

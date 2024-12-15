@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Détails du genre</title>
+</head>
+
+<body>
+    {{#each games}}
+        <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a></li>
+    {{/each}}
+    <a href="/genreList">Retour à la liste des genres</a>
+</body>
+
+</html>

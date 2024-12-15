@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Création de Jeu</title>
+    </head>
+
+    <body>
+        <a href="/addGame">
+            <button>Créer un jeu</button>
+        </a>
+        <a href="/addEditor">
+            <button>Créer un éditeur</button>
+        </a>
+        <a href="/gameList">
+            <button>Voir la liste des jeux</button>
+        </a>
+        <a href="/editorList">
+            <button>Voir la liste des éditeurs</button>
+        </a>
+        <a href="/genreList">
+            <button>Voir la liste des genres</button>
+        </a>
+
+        <h1>Jeux en avant sur la page d'accueil</h1>
+        <ul>
+            {{#each games}}
+                <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a></li>
+            {{/each}}
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Modifier l'éditeur</title>
+</head>
+<body>
+    <h1>Modifier l'éditeur</h1>
+    <form action="/modifyEditor/{{editor.id}}" method="POST">
+        <label for="editorName">Nom de l'éditeur :</label>
+        <input type="text" id="editorName" name="editorName" value="{{editor.editorName}}" required/>
+       
+        <button type="submit">Mettre à jour</button>
+    </form>
+    <a href="/editorList">Annuler</a>
+</body>
+</html>
