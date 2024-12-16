@@ -2,6 +2,7 @@
     const { PrismaClient } = require("@prisma/client");
     const bodyParser = require("body-parser");
     const path = require("path");
+    const hbs = require("hbs");
 
     const app = express();
     const prisma = new PrismaClient();
@@ -10,9 +11,16 @@
 
     app.set("view engine", "hbs");
     app.set("views", path.join(__dirname, "views"));
+    hbs.registerPartials(path.join(__dirname, "views", "partials"));
+    
 
     
     app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(express.static(path.join(__dirname, "public")));
+
+    hbs.registerHelper('isEqual', function(a, b) {
+        return a === b;
+    });
 
     app.get("/", async (req, res) => {
         try {
@@ -20,7 +28,7 @@
                 where: { appearHomepage: true }, // Récupère les jeux où appearHomepage est true
             });
     
-            res.render("homepage", { games }); // Passe les jeux à la vue
+            res.render("homepage", { games, currentPage: "homepage"  }); // Passe les jeux à la vue
         } catch (error) {
             console.error("Erreur de récupération des jeux pour la page d'accueil:", error);
             res.status(500).send("Erreur de serveur");
@@ -30,13 +38,11 @@
     app.get("/addGame", async (req, res) => {
         try {
             // Requêtes simultanées pour les genres et les éditeurs
-            const [genres, editors] = await Promise.all([
-                prisma.genres.findMany(),
-                prisma.editors.findMany()
-            ]);
+            const genres = await prisma.genres.findMany()
+            const editors = await prisma.editors.findMany()
     
             // Rendu du formulaire avec les deux listes
-            res.render("addGame", { genres, editors });
+            res.render("addGame", { genres, editors, currentPage: "addGame"  });
         } catch (error) {   
             console.error("Erreur de récupération des données:", error);
             res.status(500).send("Erreur de serveur");
@@ -55,8 +61,8 @@
                     name,
                     description,
                     releaseDate,
-                    genre,
-                    editor,
+                    genreId: parseInt(genre),
+                    editorId: parseInt(editor),
                 },
             }); // Ici on ne stock pas le retour de la requête, mais on attend quand même son exécution
             res.status(201).redirect("/gameList"); // On redirige vers la page des tâches
@@ -69,10 +75,9 @@
     app.get("/gameList", async (req, res) => {
         try {
             const games = await prisma.games.findMany({
-                select: { id: true, name: true, appearHomepage: true }, // On récupère uniquement le nom des jeux
                 orderBy: { name: "asc" } // Trie par ordre alphabétique
             });
-            res.render("gameList", { games });
+            res.render("gameList", { games, currentPage: "gameList"  });
         } catch (error) {
             console.error("Erreur de récupération des jeux:", error);
             res.status(500).send("Erreur de serveur");
@@ -82,10 +87,9 @@
     app.get("/editorList", async (req, res) => {
         try {
             const editors = await prisma.editors.findMany({
-                select: { id: true, editorName: true }, // On récupère uniquement le nom des jeux
                 orderBy: { editorName: "asc" } // Trie par ordre alphabétique
             });
-            res.render("editorList", { editors });
+            res.render("editorList", { editors, currentPage: "editorList"  });
         } catch (error) {
             console.error("Erreur de récupération des jeux:", error);
             res.status(500).send("Erreur de serveur");
@@ -94,7 +98,7 @@
 
 
     app.get("/addEditor", (req, res) => {
-        res.sendFile(path.join(__dirname,"public", "addEditor.html"));;
+        res.render("addEditor",  {currentPage: "addEditor"} );
     });
 
     app.post("/addEditor", async (req, res) => {
@@ -105,7 +109,7 @@
                     editorName
                 },
             }); // Ici on ne stock pas le retour de la requête, mais on attend quand même son exécution
-            res.status(201).redirect("/"); // On redirige vers la page des tâches
+            res.status(201).redirect("/editorList"); // On redirige vers la page des tâches
         } catch (error) {
             console.error(error);
             res.status(400).json({ error: "Game creation failed" });
@@ -113,18 +117,20 @@
     });
     
     app.get("/gameDetails/:id-:name", async (req, res) => {
-        const { id, name } = req.params;
+        const { id } = req.params;
     
         try {
             const game = await prisma.games.findUnique({
                 where: { id: parseInt(id) },
-            });
-    
-            if (!game || game.name !== name) {
-                return res.status(404).send("Jeu non trouvé");
-            }
-    
-            res.render("gameDetails", { game });
+            });   
+            const editor = await prisma.editors.findUnique({
+                where: { id: game.editorId },
+            });   
+            const genre = await prisma.genres.findUnique({
+                where: { id: game.genreId },
+            });   
+
+            res.render("gameDetails", { game, editor, genre });
         } catch (error) {
             console.error("Erreur de récupération des détails du jeu:", error);
             res.status(500).send("Erreur de serveur");
@@ -132,17 +138,14 @@
     });
 
     app.get("/editorDetails/:id-:name", async (req, res) => {
-        const { id, name } = req.params;
+        const { id } = req.params;
         try {
             const games = await prisma.games.findMany({
-                where: { editor: name },
+                where: { editorId: parseInt(id) },
             });
             const editor = await prisma.editors.findUnique({
                 where: { id: parseInt(id) }
             });
-        if (!games || games.length === 0) {
-            return res.status(404).send("Aucun jeu trouvé pour cet éditeur");
-        }
     
             res.render("editorDetails", { games, editor });
         } catch (error) {
@@ -152,17 +155,14 @@
     });
 
     app.get("/genreDetails/:id-:genre", async (req, res) => {
-        const { id, genreName } = req.params;
+        const { id } = req.params;
         try {
             const games = await prisma.games.findMany({
-                where: { genre: genreName },
+                where: { genreId: parseInt(id) },
             });
             const genre = await prisma.genres.findUnique({
                 where: { id: parseInt(id) }
             });
-        if (!games || games.length === 0) {
-            return res.status(404).send("Aucun jeu trouvé pour ce genre");
-        }
     
             res.render("genreDetails", { games, genre });
         } catch (error) {
@@ -174,10 +174,9 @@
     app.get("/genreList", async (req, res) => {
         try {
             const genres = await prisma.genres.findMany({
-                select: { id: true, genre: true },
                 orderBy: { genre: "asc" } // Trie par ordre alphabétique
             });
-            res.render("genreList", { genres });
+            res.render("genreList", { genres, currentPage: "genreList" });
         } catch (error) {
             console.error("Erreur de récupération des genres:", error);
             res.status(500).send("Erreur de serveur");
@@ -199,11 +198,11 @@
     });
 
     app.post("/deleteEditor/:id-:name", async (req, res) => {
-        const { id, name } = req.params;
+        const { id } = req.params;
     
         try {
             await prisma.games.deleteMany({
-                where: { editor: name }
+                where: { editorId: parseInt(id) }
             });
             await prisma.editors.delete({
                 where: { id: parseInt(id) }
@@ -215,25 +214,18 @@
         }
     });
 
-
     app.get("/modifyGame/:id-:name", async (req, res) => {
-        const { id, name } = req.params;
+        const { id } = req.params;
         try {
             const game = await prisma.games.findUnique({
                 where: { id: parseInt(id) }
             });
-    
-            if (!game || game.name !== name) {
-                return res.status(404).send("Jeu non trouvé");
-            }
             // Requêtes simultanées pour les genres et les éditeurs
-            const [genres, editors] = await Promise.all([
-                prisma.genres.findMany(),
-                prisma.editors.findMany()
-            ]);
+            const genres = await prisma.genres.findMany()
+            const editors = await prisma.editors.findMany()
     
             // Rendu du formulaire avec les deux listes
-            res.render("modifyGame", { genres, editors, game });
+            res.render("modifyGame", { game, genres, editors});
         } catch (error) {   
             console.error("Erreur de récupération des données:", error);
             res.status(500).send("Erreur de serveur");
@@ -254,8 +246,8 @@
                     name,
                     description,
                     releaseDate,
-                    genre,
-                    editor,
+                    genreId: parseInt(genre),
+                    editorId: parseInt(editor),
                 },
             });
             res.status(201).redirect("/gameList"); // On redirige vers la page des tâches
@@ -273,11 +265,6 @@
                 where: { id: parseInt(id) }
             });
     
-            if (!editor || editor.editorName !== name) {
-                return res.status(404).send("Jeu non trouvé");
-            }
-
-
             res.render("modifyEditor", { editor });
         } catch (error) {   
             console.error("Erreur de récupération des données:", error);
@@ -287,26 +274,16 @@
 
     app.post("/modifyEditor/:id", async (req, res) => {
         const { id } = req.params;
-        let { editorName } = req.body;
+        const { editorName } = req.body;
 
         try {
-
-            const editor = await prisma.editors.findUnique({
-                where: { id: parseInt(id) },
-            });
-
             await prisma.editors.update({
                 where: { id: parseInt(id) },
                 data: {
                     editorName,
                 },
             });
-            await prisma.games.updateMany({
-                where: { editor: editor.editorName },
-                data: {
-                    editor: editorName,
-                },
-            });
+           
             res.status(201).redirect("/editorList");
         } catch (error) {
             console.error(error);

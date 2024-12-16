@@ -7,13 +7,13 @@
 </head>
 
 <body>
+    {{> header}}
     <h1>Liste des Genres</h1>
     <ul>
         {{#each genres}}
         <li><a href="/genreDetails/{{this.id}}-{{this.genre}}">{{this.genre}}</a></li>
         {{/each}}
     </ul>
-    <a href="/">Retour à l'accueil</a>
 </body>
 
 </html>

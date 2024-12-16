@@ -4,25 +4,11 @@
     <head>
         <meta charset="UTF-8" />
         <title>Création de Jeu</title>
+        <link rel="stylesheet" href="/styles/homepage.css">
     </head>
 
     <body>
-        <a href="/addGame">
-            <button>Créer un jeu</button>
-        </a>
-        <a href="/addEditor">
-            <button>Créer un éditeur</button>
-        </a>
-        <a href="/gameList">
-            <button>Voir la liste des jeux</button>
-        </a>
-        <a href="/editorList">
-            <button>Voir la liste des éditeurs</button>
-        </a>
-        <a href="/genreList">
-            <button>Voir la liste des genres</button>
-        </a>
-
+        {{> header}}
         <h1>Jeux en avant sur la page d'accueil</h1>
         <ul>
             {{#each games}}

@@ -7,34 +7,36 @@
     </head>
 
     <body>
+        {{> header}}
+
+        <h1>Création d'un jeu : </h1>
+
         <form id="addGameForm" action="/addGame" method="POST">
-            Ajouter un jeu : 
             <label for="name">Nom du jeu :</label>
-            <input type="text" id="name" name="name" required/>
+            <input type="text" id="name" name="name" required/><br>
 
             <label for="description">Description :</label>
-            <input type="text" id="description" name="description"/>
+            <input type="text" id="description" name="description"/><br>
 
             <label for="releaseDate">Date de sortie :</label>
-            <input type="date" id="releaseDate" name="releaseDate" required/>
+            <input type="date" id="releaseDate" name="releaseDate" required/><br>
 
             <label for="genre">Genre :</label>
             <select id="genre" name="genre" required>
                 {{#each genres}} 
-                    <option value="{{this.genre}}">{{this.genre}}</option>
+                    <option value="{{this.id}}">{{this.genre}}</option>
                 {{/each}}
-            </select>
+            </select><br>
 
             <label for="editor">Éditeur :</label>
             <select id="editor" name="editor" required>
                 {{#each editors}} 
-                    <option value="{{this.editorName}}">{{this.editorName}}</option>
+                    <option value="{{this.id}}">{{this.editorName}}</option>
                 {{/each}}
-            </select>
+            </select><br>
 
-            <button type="submit">Ajouter</button>
+            <button type="submit" class="acceptButton">Ajouter</button>
 
-            <a href="/">Retour à l'accueil</a>
         </form>
     </body>
 </html>

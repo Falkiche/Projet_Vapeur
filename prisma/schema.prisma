@@ -18,17 +18,21 @@ model Games {
   name           String
   description    String
   releaseDate    String
-  genre          String
-  editor         String
+  genreId        Int // Clé étrangère vers le modèle Genre
+  genre          Genres  @relation(fields: [genreId], references: [id]) // Relation avec Genres
+  editorId       Int // Clé étrangère vers le modèle Editor
+  editor         Editors @relation(fields: [editorId], references: [id]) // Relation avec Editors
   appearHomepage Boolean @default(false)
 }
 
 model Genres {
-  id    Int    @id @default(autoincrement())
+  id    Int     @id @default(autoincrement())
   genre String
+  games Games[] // Relation inverse : un genre peut avoir plusieurs jeux
 }
 
 model Editors {
-  id         Int    @id @default(autoincrement())
+  id         Int     @id @default(autoincrement())
   editorName String
+  games      Games[] // Relation inverse : un éditeur peut avoir plusieurs jeux
 }

@@ -7,15 +7,12 @@
 </head>
 
 <body>
-    <h1> {{game.name}}</h1>
+    {{> header}}
+    <h1>{{game.name}}</h1>
+        <a href="/genreDetails/{{genre.id}}-{{genre.genre}}" id="genreInGameDetails">{{genre.genre}}</a>
+        <a href="/editorDetails/{{editor.id}}-{{editor.editorName}}" id="editorInGameDetails">{{editor.editorName}}</a><br><br>
+        <p id="paragraphGameDetails">{{game.description}}</p>
+        <p>(jeu paru le {{game.releaseDate}})</p>
 
-        <strong>{{game.description}}</strong> 
-        {{game.releaseDate}}
-        <a href="/genreDetails/{{game.id}}-{{game.genre}}">{{game.genre}}</a>
-        <a href="/editorDetails/{{game.id}}-{{game.editor}}">{{game.editor}}</a>
-
-
-    <a href="/gameList">Retour à la liste des jeux</a>
 </body>
-
 </html>

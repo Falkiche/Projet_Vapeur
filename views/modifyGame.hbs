@@ -5,6 +5,7 @@
     <title>Modifier le Jeu</title>
 </head>
 <body>
+    {{> header}}
     <h1>Modifier le Jeu</h1>
     <form action="/modifyGame/{{game.id}}" method="POST">
         <label for="name">Nom du jeu :</label>
@@ -19,20 +20,21 @@
         <label for="genre">Genre :</label>
         <select id="genre" name="genre" required>
             {{#each genres}} 
-                <option value="{{this.genre}}">{{this.genre}}</option>
+                <option value="{{this.id}}">{{this.genre}}</option>
             {{/each}}
         </select>
 
         <label for="editor">Éditeur :</label>
         <select id="editor" name="editor" required>
             {{#each editors}} 
-                <option value="{{this.editorName}}">{{this.editorName}}</option>
+                <option value="{{this.id}}">{{this.editorName}}</option>
             {{/each}}
         </select>
-
-        
-        <button type="submit">Mettre à jour</button>
+        <button type="submit" class="acceptButton">Mettre à jour</button>
     </form>
-    <a href="/gameList">Annuler</a>
+
+    <form action="/gameList" method="GET" style="display:inline;">
+        <button type="submit" class="deleteButton">Annuler</button>
+    </form>
 </body>
 </html>

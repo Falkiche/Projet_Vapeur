@@ -7,15 +7,15 @@
     </head>
 
     <body>
+        {{> header}}
+
+        <h1>Création d'un éditeur : </h1>
+
         <form id="addEditorForm" action="/addEditor" method="POST">
-            Ajouter un éditeur : 
             <label for="editorName">Nom de l'éditeur :</label>
-            <input type="text" id="editorName" name="editorName" />
-
-            <button type="submit">Ajouter</button>
+            <input type="text" id="editorName" name="editorName" required/>
+            <button type="submit" class="acceptButton">Ajouter</button>
         </form>
-
-        <a href="/">Retour à l'accueil</a>
         
     </body>
 </html>

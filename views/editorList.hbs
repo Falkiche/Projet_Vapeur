@@ -7,19 +7,19 @@
 </head>
 
 <body>
+    {{> header}}
     <h1>Liste des Editeurs</h1>
     <ul>
         {{#each editors}}
         <li><a href="/editorDetails/{{this.id}}-{{this.editorName}}">{{this.editorName}}</a>
             <form action="/deleteEditor/{{this.id}}-{{this.editorName}}" method="POST" style="display:inline;">
-                <button type="submit">Supprimer</button>
+                <button type="submit" class="deleteButton">Supprimer</button>
             </form>   
             <form action="/modifyEditor/{{this.id}}-{{this.editorName}}" method="GET" style="display:inline;">
-                <button type="submit">Modifier</button>
+                <button type="submit" class="modifyButton">Modifier</button>
             </form>
         {{/each}}
     </ul>
-    <a href="/">Retour à l'accueil</a>
 </body>
 
 </html>

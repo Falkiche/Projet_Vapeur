@@ -1,0 +1,130 @@
+header {
+    background-color: hsl(0, 3%, 18%);  /* Couleur de fond du header */
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+body {
+    background-color: #3c3c3c;
+    color: #ffffff; 
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Franklin Gothic Medium';
+}
+
+ul {
+    font-family: Arial, sans-serif;
+    list-style-type: none;
+    margin-left: 10px;
+}
+/* Lien normal */
+a {
+    color: white; /* Change la couleur du lien */
+    text-decoration: underline gray;
+  }
+  
+  /* Lien survolé */
+a:hover {
+    color: rgb(95, 255, 71); /* Couleur au survol */
+  }
+  
+ul li {
+    padding: 10px 0; /* 10px en haut et en bas de chaque élément de la liste */
+}
+h1 {
+    padding: 20px 25px;
+    font-size: 25px;
+    font-family: 'Franklin Gothic Medium';
+}
+#titre {
+    padding: 10px 10px;
+    font-size: 25px;
+    font-family: Impact;
+}
+
+nav a button {
+    padding: 8px 15px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #212121;
+    color: white;
+}
+
+p {
+    font-size: 14px;
+    margin: 25px;
+}
+
+.acceptButton{
+    padding: 8px 15px;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #2d662c;
+    color: white;
+}
+
+.modifyButton{
+    padding: 8px 15px;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #2c3366;
+    color: white;
+}
+
+.deleteButton{
+    padding: 8px 15px;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #662c2c;
+    color: white;
+}
+
+.appearButton{
+    padding: 8px 15px;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #665b2c;
+    color: white;
+}
+
+.notAppearButton{
+    padding: 8px 15px;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #2d2d2d;
+    color: white;
+}
+.currentButton Button{
+    background-color: #c58504; /* Change la couleur du bouton actif */
+}
+
+#addGameForm, #addEditorForm  {
+    margin: 20px;
+}
+
+#genreInGameDetails{
+    margin: 20px;
+    font-size: 22px;
+    color: rgb(128, 164, 255); /* Change la couleur du lien */
+    text-decoration: underline rgb(128, 164, 255);
+}
+
+#editorInGameDetails{
+    color: rgb(255, 122, 122); /* Change la couleur du lien */
+    font-size: 22px;
+    text-decoration: underline rgb(255, 122, 122);
+}
+
+#paragraphGameDetails{
+    font-size: 24px;
+}

@@ -7,11 +7,15 @@
 </head>
 
 <body>
-    <h1>A propos de <strong>{{editor.editorName}}</strong></h1>
+    {{> header}}
+    <h1><strong>{{editor.editorName}}</strong></h1>
+    <p>Voici la liste des jeux de {{editor.editorName}} :</p>
+    <ul>
     {{#each games}}
         <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a></li>
     {{/each}}
-    <a href="/editorList">Retour à la liste des éditeurs</a>
+    </ul>
+
 </body>
 
 </html>

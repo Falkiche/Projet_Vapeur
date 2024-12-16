@@ -1,0 +1,27 @@
+<head>
+    <link rel="stylesheet" href="/styles/header.css">
+</head>
+
+<header>
+    <nav>
+        <span id="titre">VAPEUR</span>
+
+        <a href="/" class="{{#if (isEqual currentPage 'homepage')}}currentButton{{/if}}">
+        <button>Accueil</button></a>
+
+        <a href="/addGame" class="{{#if (isEqual currentPage 'addGame')}}currentButton{{/if}}">
+        <button>Créer un jeu</button></a>
+
+        <a href="/addEditor" class="{{#if (isEqual currentPage 'addEditor')}}currentButton{{/if}}">
+        <button>Créer un éditeur</button></a>
+
+        <a href="/gameList" class="{{#if (isEqual currentPage 'gameList')}}currentButton{{/if}}">
+        <button>Voir la liste des jeux</button></a>
+
+        <a href="/editorList" class="{{#if (isEqual currentPage 'editorList')}}currentButton{{/if}}">
+        <button>Voir la liste des éditeurs</button></a>
+
+        <a href="/genreList" class="{{#if (isEqual currentPage 'genreList')}}currentButton{{/if}}">
+        <button>Voir la liste des genres</button></a>
+    </nav>
+</header>

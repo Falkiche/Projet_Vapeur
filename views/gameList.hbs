@@ -7,27 +7,29 @@
 </head>
 
 <body>
+    {{> header}}
     <h1>Liste des Jeux</h1>
     <ul>
         {{#each games}}
         <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a>
             <form action="/deleteGame/{{this.id}}" method="POST" style="display:inline;">
-                <button type="submit">Supprimer</button>
+                <button type="submit" class="deleteButton">Supprimer</button>
             </form>
             
             <form action="/modifyGame/{{this.id}}-{{this.name}}" method="GET" style="display:inline;">
-                <button type="submit">Modifier</button>
+                <button type="submit" class="modifyButton">Modifier</button>
             </form>
 
-             <form action="/toggleHomepage/{{this.id}}" method="POST" style="display:inline;">
-                <button type="submit">
+            <form action="/toggleHomepage/{{this.id}}" method="POST" style="display:inline;">
+                <button type="submit" 
+                    class="{{#if this.appearHomepage}}appearButton{{else}}notAppearButton{{/if}}">
                     {{#if this.appearHomepage}}Retirer de la page d'accueil{{else}}Mettre en avant{{/if}}
                 </button>
             </form>
+            
         </li>
         {{/each}}
     </ul>
-    <a href="/">Retour à l'accueil</a>
 </body>
 
 </html>
