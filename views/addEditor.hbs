@@ -7,13 +7,16 @@
     </head>
 
     <body>
-        {{> header}}
+        {{> header}} <!-- Inclusion du header.hbs -->
 
         <h1>Création d'un éditeur : </h1>
 
+        <!-- Formulaire de création d'un éditeur : Nom requis et Bouton de validation-->
+
         <form id="addEditorForm" action="/addEditor" method="POST">
             <label for="editorName">Nom de l'éditeur :</label>
-            <input type="text" id="editorName" name="editorName" required/>
+                <input type="text" id="editorName" name="editorName" required/>
+
             <button type="submit" class="acceptButton">Ajouter</button>
         </form>
         

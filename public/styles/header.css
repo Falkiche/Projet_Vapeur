@@ -1,5 +1,8 @@
+/* ---- Pour le header ----
+   ------------------------ */
+
 header {
-    background-color: hsl(0, 3%, 18%);  /* Couleur de fond du header */
+    background-color: hsl(0, 3%, 18%);
     width: 100%;
 }
 
@@ -7,6 +10,48 @@ nav {
     display: flex;
     align-items: center;
 }
+
+nav a button {
+    padding: 8px 15px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #212121;
+    color: white;
+}
+
+#titre {
+    padding: 10px 10px;
+    font-size: 25px;
+    font-family: Impact;
+}
+
+.currentButton Button{
+    background-color: #c58504;
+}
+
+/* ---- Uniquement utilisés pour le GameDetails.hbs ----
+   -----------------------------------------------------  */
+
+   #genreInGameDetails{
+    margin: 20px;
+    font-size: 22px;
+    color: rgb(128, 164, 255);
+    text-decoration: underline rgb(128, 164, 255);
+}
+
+#editorInGameDetails{
+    color: rgb(255, 122, 122);
+    font-size: 22px;
+    text-decoration: underline rgb(255, 122, 122);
+}
+
+#paragraphGameDetails{
+    font-size: 24px;
+}
+
+/* ---- Pour le reste de chaque page ----
+   --------------------------------------  */
 
 body {
     background-color: #3c3c3c;
@@ -18,41 +63,28 @@ body {
 
 ul {
     font-family: Arial, sans-serif;
-    list-style-type: none;
     margin-left: 10px;
 }
-/* Lien normal */
+
 a {
-    color: white; /* Change la couleur du lien */
+    color: white;
     text-decoration: underline gray;
   }
   
-  /* Lien survolé */
+/* Quand un lien est survolé par le curseur*/
 a:hover {
-    color: rgb(95, 255, 71); /* Couleur au survol */
+    color: rgb(95, 255, 71);
   }
   
+/* Espacement entre chaque valeur d'une liste*/
 ul li {
-    padding: 10px 0; /* 10px en haut et en bas de chaque élément de la liste */
+    padding: 10px 0;
 }
+
 h1 {
     padding: 20px 25px;
     font-size: 25px;
     font-family: 'Franklin Gothic Medium';
-}
-#titre {
-    padding: 10px 10px;
-    font-size: 25px;
-    font-family: Impact;
-}
-
-nav a button {
-    padding: 8px 15px;
-    margin: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #212121;
-    color: white;
 }
 
 p {
@@ -104,27 +136,7 @@ p {
     background-color: #2d2d2d;
     color: white;
 }
-.currentButton Button{
-    background-color: #c58504; /* Change la couleur du bouton actif */
-}
 
 #addGameForm, #addEditorForm  {
     margin: 20px;
-}
-
-#genreInGameDetails{
-    margin: 20px;
-    font-size: 22px;
-    color: rgb(128, 164, 255); /* Change la couleur du lien */
-    text-decoration: underline rgb(128, 164, 255);
-}
-
-#editorInGameDetails{
-    color: rgb(255, 122, 122); /* Change la couleur du lien */
-    font-size: 22px;
-    text-decoration: underline rgb(255, 122, 122);
-}
-
-#paragraphGameDetails{
-    font-size: 24px;
 }

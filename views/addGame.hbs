@@ -7,9 +7,12 @@
     </head>
 
     <body>
-        {{> header}}
+        {{> header}} <!-- Inclusion du header.hbs -->
 
         <h1>Création d'un jeu : </h1>
+
+        <!-- Formulaire de création d'un jeu : Nom, Date, Genre et Editeur requis
+          et Bouton de validation (Description vaut "Sans description" si non renseigné-->
 
         <form id="addGameForm" action="/addGame" method="POST">
             <label for="name">Nom du jeu :</label>
@@ -21,12 +24,16 @@
             <label for="releaseDate">Date de sortie :</label>
             <input type="date" id="releaseDate" name="releaseDate" required/><br>
 
+            <!-- Liste déroulante des noms de tous les genres de la table Genres -->
+
             <label for="genre">Genre :</label>
             <select id="genre" name="genre" required>
                 {{#each genres}} 
                     <option value="{{this.id}}">{{this.genre}}</option>
                 {{/each}}
             </select><br>
+
+            <!-- Liste déroulante des noms de tous les éditeurs de la table Éditeurs -->
 
             <label for="editor">Éditeur :</label>
             <select id="editor" name="editor" required>

@@ -7,27 +7,32 @@
 </head>
 
 <body>
-    {{> header}}
+    {{> header}}  <!-- Inclusion du header.hbs -->
+
+    <!-- Liste tous les jeux : Nom en lien cliquable,
+    Bouton de suppression, Bouton de modification et Bouton de mise en avant -->
+
     <h1>Liste des Jeux</h1>
+
     <ul>
         {{#each games}}
-        <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a>
-            <form action="/deleteGame/{{this.id}}" method="POST" style="display:inline;">
-                <button type="submit" class="deleteButton">Supprimer</button>
-            </form>
-            
-            <form action="/modifyGame/{{this.id}}-{{this.name}}" method="GET" style="display:inline;">
-                <button type="submit" class="modifyButton">Modifier</button>
-            </form>
+            <li>
+                <a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a>
 
-            <form action="/toggleHomepage/{{this.id}}" method="POST" style="display:inline;">
-                <button type="submit" 
-                    class="{{#if this.appearHomepage}}appearButton{{else}}notAppearButton{{/if}}">
-                    {{#if this.appearHomepage}}Retirer de la page d'accueil{{else}}Mettre en avant{{/if}}
-                </button>
-            </form>
-            
-        </li>
+                <form action="/deleteGame/{{this.id}}" method="POST" style="display:inline;">
+                    <button type="submit" class="deleteButton">Supprimer</button>
+                </form>
+
+                <form action="/modifyGame/{{this.id}}-{{this.name}}" method="GET" style="display:inline;">
+                    <button type="submit" class="modifyButton">Modifier</button>
+                </form>
+
+                <form action="/toggleHomepage/{{this.id}}" method="POST" style="display:inline;">
+                    <button type="submit" class="{{#if this.appearHomepage}}appearButton{{else}}notAppearButton{{/if}}">
+                        {{#if this.appearHomepage}}Retirer de la page d'accueil{{else}}Mettre en avant{{/if}}
+                    </button>
+                </form>
+            </li>
         {{/each}}
     </ul>
 </body>

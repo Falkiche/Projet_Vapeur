@@ -1,3 +1,6 @@
+// Ce fichier permet de créer des données dites "seed",
+// c'est-à-dire des données déjà inscrites à la création de la BDD.
+
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
@@ -16,6 +19,8 @@ for (let genre of genres) {
         data: { genre }
     })
 }}
+
+// Récupération des erreurs liées à la fonction main
 
 main(e => {
     console.log(e);

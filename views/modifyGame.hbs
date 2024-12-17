@@ -5,8 +5,13 @@
     <title>Modifier le Jeu</title>
 </head>
 <body>
-    {{> header}}
+    {{> header}}    <!-- Inclusion du header.hbs -->
+
     <h1>Modifier le Jeu</h1>
+
+    <!-- Formulaire de modification d'un jeu : Nom, Date, Genre et Editeur requis
+        Bouton de validation et Bouton d'annulation (Description vaut "Sans description" si non renseigné-->
+
     <form action="/modifyGame/{{game.id}}" method="POST">
         <label for="name">Nom du jeu :</label>
         <input type="text" id="name" name="name" value="{{game.name}}" required/>

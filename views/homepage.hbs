@@ -8,12 +8,17 @@
     </head>
 
     <body>
-        {{> header}}
+        {{> header}}    <!-- Inclusion du header.hbs -->
+        
         <h1>Jeux en avant sur la page d'accueil</h1>
+
+        <!-- Liste de tous les jeux mis en avant : Nom en lien cliquable -->
+
         <ul>
             {{#each games}}
                 <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a></li>
             {{/each}}
         </ul>
+
     </body>
 </html>

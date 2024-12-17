@@ -7,19 +7,27 @@
 </head>
 
 <body>
-    {{> header}}
+    {{> header}}    <!-- Inclusion du header.hbs -->
+
     <h1>Liste des Editeurs</h1>
-    <ul>
-        {{#each editors}}
-        <li><a href="/editorDetails/{{this.id}}-{{this.editorName}}">{{this.editorName}}</a>
-            <form action="/deleteEditor/{{this.id}}-{{this.editorName}}" method="POST" style="display:inline;">
-                <button type="submit" class="deleteButton">Supprimer</button>
-            </form>   
-            <form action="/modifyEditor/{{this.id}}-{{this.editorName}}" method="GET" style="display:inline;">
-                <button type="submit" class="modifyButton">Modifier</button>
-            </form>
-        {{/each}}
-    </ul>
+
+    <!-- Liste tous les éditeurs : Nom en lien cliquable,
+        Bouton de suppression et Bouton de modification -->
+
+        <ul>
+            {{#each editors}}
+                <li>
+                    <a href="/editorDetails/{{this.id}}-{{this.editorName}}">{{this.editorName}}</a>
+                    <form action="/deleteEditor/{{this.id}}-{{this.editorName}}" method="POST" style="display:inline;">
+                        <button type="submit" class="deleteButton">Supprimer</button>
+                    </form>
+                
+                    <form action="/modifyEditor/{{this.id}}-{{this.editorName}}" method="GET" style="display:inline;">
+                        <button type="submit" class="modifyButton">Modifier</button>
+                    </form>
+                </li>
+            {{/each}}
+        </ul>
 </body>
 
 </html>

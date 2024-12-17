@@ -4,18 +4,22 @@
     <meta charset="UTF-8" />
     <title>Modifier l'éditeur</title>
 </head>
-<body>
-    {{> header}}
-    <h1>Modifier l'éditeur</h1>
-    <form action="/modifyEditor/{{editor.id}}" method="POST">
-        <label for="editorName">Nom de l'éditeur :</label>
-        <input type="text" id="editorName" name="editorName" value="{{editor.editorName}}" required/>
+    <body>
+        {{> header}} <!-- Inclusion du header.hbs -->
+
+        <h1>Modifier l'éditeur</h1>
+
+        <!-- Formulaire de modification d'un éditeur : Nom requis, Bouton de validation et Bouton d'annulation-->
+
+        <form action="/modifyEditor/{{editor.id}}" method="POST">
+            <label for="editorName">Nom de l'éditeur :</label>
+            <input type="text" id="editorName" name="editorName" value="{{editor.editorName}}" required/>
        
-        <button type="submit" class="acceptButton">Mettre à jour</button>
-    </form>
+            <button type="submit" class="acceptButton">Mettre à jour</button>
+        </form>
     
-    <form action="/editorList" method="GET" style="display:inline;">
-        <button type="submit" class="deleteButton">Annuler</button>
-    </form>
-</body>
+        <form action="/editorList" method="GET" style="display:inline;">
+            <button type="submit" class="deleteButton">Annuler</button>
+        </form>
+    </body>
 </html>

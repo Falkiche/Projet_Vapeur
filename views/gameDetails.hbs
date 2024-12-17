@@ -7,12 +7,18 @@
 </head>
 
 <body>
-    {{> header}}
+    {{> header}}  <!-- Inclusion du header.hbs -->
+
+     <!-- Détails d'un jeu : Genre en lien cliquable vers le détail du Genre
+     Editeur en lien cliquable vers le détail de l'Éditeur, Description et Date de création du jeu  -->
+
     <h1>{{game.name}}</h1>
-        <a href="/genreDetails/{{genre.id}}-{{genre.genre}}" id="genreInGameDetails">{{genre.genre}}</a>
-        <a href="/editorDetails/{{editor.id}}-{{editor.editorName}}" id="editorInGameDetails">{{editor.editorName}}</a><br><br>
-        <p id="paragraphGameDetails">{{game.description}}</p>
-        <p>(jeu paru le {{game.releaseDate}})</p>
+    
+    <a href="/genreDetails/{{genre.id}}-{{genre.genre}}" id="genreInGameDetails">{{genre.genre}}</a>
+    <a href="/editorDetails/{{editor.id}}-{{editor.editorName}}" id="editorInGameDetails">{{editor.editorName}}</a><br><br>
+
+    <p id="paragraphGameDetails">{{game.description}}</p>
+    <p>(jeu paru le {{game.releaseDate}})</p>
 
 </body>
 </html>

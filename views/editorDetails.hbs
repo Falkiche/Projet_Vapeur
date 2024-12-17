@@ -7,13 +7,17 @@
 </head>
 
 <body>
-    {{> header}}
+    {{> header}} <!-- Inclusion du header.hbs -->
+
     <h1><strong>{{editor.editorName}}</strong></h1>
     <p>Voici la liste des jeux de {{editor.editorName}} :</p>
+
+    <!-- Liste de tous les jeux appartenant à cet éditeur, en lien cliquable -->
+
     <ul>
-    {{#each games}}
-        <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a></li>
-    {{/each}}
+        {{#each games}}
+            <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a></li>
+        {{/each}}
     </ul>
 
 </body>

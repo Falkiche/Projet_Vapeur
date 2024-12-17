@@ -7,13 +7,17 @@
 </head>
 
 <body>
-    {{> header}}
+    {{> header}}    <!-- Inclusion du header.hbs -->
+
+     <!-- Liste de tous les jeux du genre, en lien cliquable  -->
+
     <h1><strong>{{genre.genre}}</strong></h1>
     <p>Voici la liste des jeux du genre {{genre.genre}} :</p>
+    
     <ul>
-    {{#each games}}
-        <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a></li>
-    {{/each}}
+        {{#each games}}
+            <li><a href="/gameDetails/{{this.id}}-{{this.name}}">{{this.name}}</a></li>
+        {{/each}}
     </ul>
 </body>
 
