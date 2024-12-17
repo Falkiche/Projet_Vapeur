@@ -6,7 +6,7 @@ Modules requis :
 
 Suivez les étapes suivantes pour installer et utiliser le projet Vapeur
 
-1 - Téléchargez le dossier : Code -> Download as ZIP
+1 - Téléchargez le dossier : Code -> Download as ZIP, puis l'extraire où vous le souhaitez
 2 - Ouvrez un terminal dans le dossier racine
 3 - Saisir les commandes d'initialisation de prisma ( ORM pour la gestion de base de donnée sous JS )
       --> installer le module : npm install prisma @prisma/client sqlite3
